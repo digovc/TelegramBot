@@ -16,7 +16,7 @@ namespace TelegramBot.Example
     /// <summary>
     /// All you have to make to use this API, basically, is implement this interface.
     /// </summary>
-    internal class Example : ITelegramBotListener
+    internal class SimpleExampleBot : ITelegramBotListener
     {
         /// <summary>
         /// Use this long value to keep last update id that was processed.
@@ -72,7 +72,7 @@ namespace TelegramBot.Example
         private static void Main(string[] args)
         {
             // Tell to API where class implement the ITelegramBotListener interface.
-            ServerBot.i.objITelegramBotListener = new Example();
+            ServerBot.i.objITelegramBotListener = new SimpleExampleBot();
 
             // And finally, start the server to keep you in touch with bot updates.
             ServerBot.i.start();
