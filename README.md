@@ -8,7 +8,6 @@ To have a functional bot just implement the ITelegramBotListener interface, noth
 ## Example
 
 ```csharp
-using TelegramBot;
 using TelegramBot.Model;
 
 namespace TelegramBot.Example
@@ -64,6 +63,10 @@ namespace TelegramBot.Example
         public void onUpdate(Update[] arrObjUpdate)
         {
             // Your logic starts here.
+            foreach (Update objUpdate in arrObjUpdate)
+            {
+                this.processUpdate(objUpdate);
+            }
         }
 
         /// <summary>
@@ -76,6 +79,21 @@ namespace TelegramBot.Example
 
             // And finally, start the server to keep you in touch with bot updates.
             ServerBot.i.start();
+        }
+
+        private void processUpdate(Update objUpdate)
+        {
+            if (objUpdate.objMessage != null)
+            {
+                this.processUpdateMessage(objUpdate.objMessage);
+            }
+        }
+
+        private void processUpdateMessage(Message objMessage)
+        {
+            // You can find all methods of the Telegram Bot API at TelegramServer.i instance, as
+            // well as yours results.
+            TelegramServer.i.sendMessage(objMessage.objChat.intId, "I'm in construction! See you later.");
         }
     }
 }
